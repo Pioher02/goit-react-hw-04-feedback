@@ -1,5 +1,7 @@
-const FeedbackOptions = props => {
-  const nameButtons = Object.keys(props.options);
+import propTypes from 'prop-types';
+
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  const nameButtons = Object.keys(options);
   return (
     <ul style={{ display: 'flex', padding: 0 }}>
       {nameButtons.map((nameButton, index) => (
@@ -7,7 +9,7 @@ const FeedbackOptions = props => {
           <button
             type="button"
             onClick={() => {
-              props.onLeaveFeedback(nameButton);
+              onLeaveFeedback(nameButton);
             }}
             style={{ textTransform: 'capitalize' }}
           >
@@ -17,6 +19,11 @@ const FeedbackOptions = props => {
       ))}
     </ul>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: propTypes.object.isRequired,
+  onLeaveFeedback: propTypes.func,
 };
 
 export default FeedbackOptions;
